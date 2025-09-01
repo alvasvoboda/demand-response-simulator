@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demand Response Simulator - Grid Optimizer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="game-header">
+            <h1>⚡ Demand Response Simulator</h1>
+            <p>Optimize your electricity usage to save money and support the grid.</p>
+        </header>
+
+        <!-- Setup Phase -->
+        <div id="setupPhase" class="game-phase">
+            <div class="card">
+                <div class="card__body">
+                    <h2>Setup Customer Profile</h2>
+                    <div class="form-group">
+                        <label>Customer Type</label>
+                        <select id="customerType" class="form-control">
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="industrial">Industrial</option>
+                            <option value="aggregator">Aggregator</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="peakDemand">Peak Demand (kW): <span id="peakDemandValue">5</span></label>
+                        <input type="range" id="peakDemand" min="2" max="5000" value="5">
+                    </div>
+                    <div>
+                        <label>Demand Response Technologies</label>
+                        <div id="technologyOptions">
+                            <!-- Dynamically filled by app.js -->
+                        </div>
+                    </div>
+                    <div>
+                        <label>Rate Plan</label>
+                        <select id="ratePlan" class="form-control">
+                            <option value="tou">Time-of-Use (TOU)</option>
+                            <option value="cpp">Critical Peak Pricing (CPP)</option>
+                            <option value="rtp">Real-Time Pricing (RTP)</option>
+                        </select>
+                    </div>
+                    <button id="startSimulationBtn" class="btn-primary">Start Simulation</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulation Phase -->
+        <div id="simulationPhase" class="game-phase" style="display:none;">
+            <div class="card">
+                <div class="card__body">
+                    <h2>Simulation - Day <span id="simDay">1</span></h2>
+                    <canvas id="loadChart" width="600" height="200"></canvas>
+                    <canvas id="priceChart" width="600" height="200"></canvas>
+                    <div id="eventNotification" class="alert"></div>
+                    <div>
+                        <label for="curtailmentSlider">Curtailment Level (%): <span id="curtailmentValue">0</span></label>
+                        <input type="range" id="curtailmentSlider" min="0" max="100" value="0">
+                    </div>
+                    <div id="techCurtailmentControls"></div>
+                    <button id="nextHourBtn" class="btn-primary">Advance Hour</button>
+                </div>
+            </div>
+            <div class="metrics-panel">
+                <h3>Metrics</h3>
+                <div>Current Hour Cost: $<span id="hourCostValue">0.00</span></div>
+                <div>Daily Savings: $<span id="dailySavingsValue">0.00</span></div>
+                <div>Cumulative Savings: $<span id="cumulativeSavingsValue">0.00</span></div>
+                <div>Grid Impact: <span id="gridImpactValue">-</span></div>
+                <div>Emissions Reduction: <span id="emissionsValue">0.00</span> kg CO₂</div>
+                <div>Customer Satisfaction: <span id="satisfactionValue">100%</span></div>
+                <div>Achievements: <span id="achievementsValue">None</span></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Demand Response Simulator - © 2025</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
