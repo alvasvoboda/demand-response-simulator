@@ -1,0 +1,16 @@
+{
+  "name": "demand-response-simulator",
+  "version": "1.0.0",
+  "description": "Interactive demand response simulation game",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "start": "npx serve . -p 3000"
+  },
+  "keywords": ["demand-response", "energy", "simulation", "game"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
